@@ -16,13 +16,35 @@
         <li><a href="#">Página 3</a></li>
       </ul>
     </nav>
-    <form action="https://formsubmit.co/641c71a717626c8b3027597efe1f3491" method="POST">
-     <input type="text" name="name" required>
-     <input type="email" name="email" required>
-     <input type="text" name="texto" required>
-     <input type="hidden" name="_captcha" value="false"> <!--aqui desativa o captcha de verificação-->
-     <button type="submit">Send</button>
-</form> 
+    // comeca aqui
+   <form id="myForm" action="https://formsubmit.co/641c71a717626c8b3027597efe1f3491" method="POST">
+  <input type="text" name="name" required>
+  <input type="email" name="email" required>
+  <input type="text" name="texto" required>
+  <input type="hidden" name="_captcha" value="false">
+  <button type="submit">Send</button>
+</form>
+
+<script>
+  document.getElementById("myForm").addEventListener("submit", function(event) {
+    event.preventDefault(); // Impede o envio padrão do formulário
+
+    var form = event.target;
+    var url = form.action;
+    var formData = new FormData(form);
+
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", url);
+    xhr.onreadystatechange = function() {
+      if (xhr.readyState === 4 && xhr.status === 200) {
+        // Manipule a resposta da requisição, se necessário
+        console.log(xhr.responseText);
+      }
+    };
+    xhr.send(formData);
+  });
+</script>
+  // termina aqui
   </header>
 
   <main>
